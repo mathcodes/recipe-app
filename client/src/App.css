@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+
+.roundButton {
+  background-color: #182C4A;
+  color: #fff;
+  border:1px solid #182C4A;
+  border-radius: 50%;
+  height: 30vw;
+  width: 30vw;
+  filter: drop-shadow(2px 2px 2px #808080);
+}
+
+.roundButtonSelected {
+  background-color: #182C4A;
+  color: #fff;
+  border:1px solid #182C4A;
+  border-radius: 50%;
+  height: 30vw;
+  width: 30vw;
+  filter: drop-shadow(2px 2px 2px #808080);
+  opacity: .7;
+}
+
+.roundButton:hover{
+  opacity: .7;
+}
+
