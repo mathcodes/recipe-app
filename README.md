@@ -40,3 +40,23 @@ Run:
 
 - $yarn start
 ```
+
+Server starts on `http://localhost:5001/` endpoints are tested with Postman.
+
+## Testing in Postman
+
+Endpoints:
+
+- GET `http://localhost:5001/recipe` returns all Recipes in an array.
+
+- GET `http://localhost:5001/recipe/search/titles/*` returns all Recipes with given search parameter from the "title" field.
+
+- GET `http://localhost:5001/recipe/search/descriptions/*` returns all Recipes with given search parameter from the "description" field.
+
+- POST `http://localhost:5001/recipe` adds a recipe to the database.
+  **Requires**: Body
+  | Key | Value |
+  | ------ | ------ |
+  | titleImage | file |
+  | title | text |
+  | description | text |
