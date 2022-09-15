@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { Button, Row, Col, Container } from "reactstrap";
+import React, { useState } from "react";
+import { Row, Col, Container } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import {
   Carousel,
@@ -35,7 +35,6 @@ const HomeComponent = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
-  
 
   const next = () => {
     if (animating) return;
@@ -61,7 +60,11 @@ const HomeComponent = () => {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-           <img style={{height:'20vh', width:'60vw'}} src={item.src} alt={item.altText} />  
+        <img
+          style={{ height: "20vh", width: "60vw" }}
+          src={item.src}
+          alt={item.altText}
+        />
         <CarouselCaption
           captionText={item.caption}
           captionHeader={item.caption}
@@ -74,19 +77,15 @@ const HomeComponent = () => {
     <Container>
       <Row className="flex align-items-center text-center mt-2">
         <Col xs={6}>
-          <Carousel
-            activeIndex={activeIndex}
-            next={next}
-            previous={previous}
-          >
+          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
             <CarouselIndicators
               items={items}
               activeIndex={activeIndex}
               onClickHandler={goToIndex}
             />
-          
-             {slides}  
-            
+
+            {slides}
+
             <CarouselControl
               direction="prev"
               directionText="Previous"
@@ -100,7 +99,12 @@ const HomeComponent = () => {
           </Carousel>
         </Col>
         <Col xs={6}>
-          <input className="roundButton" type='button' onClick={() =>history.push('select')} value='Create Recipe'/>
+          <input
+            className="roundButton"
+            type="button"
+            onClick={() => history.push("select")}
+            value="Create Recipe"
+          />
         </Col>
       </Row>
     </Container>
