@@ -8,6 +8,7 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from "reactstrap";
+import RecipeDisplaySelect from "./RecipeDisplaySelect";
 
 const items = [
   {
@@ -74,40 +75,54 @@ const HomeComponent = () => {
   });
 
   return (
-    <Container>
-      <Row className="flex align-items-center text-center mt-2">
-        <Col xs={6}>
-          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-            <CarouselIndicators
-              items={items}
-              activeIndex={activeIndex}
-              onClickHandler={goToIndex}
-            />
+    <>
+      <Container>
+        <Row className="flex align-items-center text-center mt-2">
+          <Col xs={6}>
+            <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+              <CarouselIndicators
+                items={items}
+                activeIndex={activeIndex}
+                onClickHandler={goToIndex}
+              />
 
-            {slides}
+              {slides}
 
-            <CarouselControl
-              direction="prev"
-              directionText="Previous"
-              onClickHandler={previous}
+              <CarouselControl
+                direction="prev"
+                directionText="Previous"
+                onClickHandler={previous}
+              />
+              <CarouselControl
+                direction="next"
+                directionText="Next"
+                onClickHandler={next}
+              />
+            </Carousel>
+          </Col>
+          <Col xs={6}>
+            <input
+              className="roundButton"
+              type="button"
+              onClick={() => history.push("select")}
+              value="Create Recipe"
             />
-            <CarouselControl
-              direction="next"
-              directionText="Next"
-              onClickHandler={next}
-            />
-          </Carousel>
-        </Col>
-        <Col xs={6}>
-          <input
-            className="roundButton"
-            type="button"
-            onClick={() => history.push("select")}
-            value="Create Recipe"
-          />
-        </Col>
-      </Row>
-    </Container>
+          </Col>
+        </Row>
+      </Container>
+      <Container className="p-2">
+        {/* seven per page for pagenation / map for responsive phone dimensions,
+         three for height ~ 600px devices: remove 
+        when logic is in place*/}
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+      </Container>
+    </>
   );
 };
 
