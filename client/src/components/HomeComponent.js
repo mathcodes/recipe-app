@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { Button, Row, Col, Container } from "reactstrap";
+import React, { useState } from "react";
+import { Row, Col, Container } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import {
   Carousel,
@@ -8,6 +8,7 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from "reactstrap";
+import RecipeDisplaySelect from "./RecipeDisplaySelect";
 
 const items = [
   {
@@ -35,7 +36,6 @@ const HomeComponent = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
-  
 
   const next = () => {
     if (animating) return;
@@ -61,7 +61,11 @@ const HomeComponent = () => {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-           <img style={{height:'20vh', width:'60vw'}} src={item.src} alt={item.altText} />  
+        <img
+          style={{ height: "20vh", width: "60vw" }}
+          src={item.src}
+          alt={item.altText}
+        />
         <CarouselCaption
           captionText={item.caption}
           captionHeader={item.caption}
@@ -71,39 +75,54 @@ const HomeComponent = () => {
   });
 
   return (
-    <Container>
-      <Row className="flex align-items-center text-center mt-2">
-        <Col xs={6}>
-          <Carousel
-            activeIndex={activeIndex}
-            next={next}
-            previous={previous}
-          >
-            <CarouselIndicators
-              items={items}
-              activeIndex={activeIndex}
-              onClickHandler={goToIndex}
+    <>
+      <Container>
+        <Row className="flex align-items-center text-center mt-2">
+          <Col xs={6}>
+            <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+              <CarouselIndicators
+                items={items}
+                activeIndex={activeIndex}
+                onClickHandler={goToIndex}
+              />
+
+              {slides}
+
+              <CarouselControl
+                direction="prev"
+                directionText="Previous"
+                onClickHandler={previous}
+              />
+              <CarouselControl
+                direction="next"
+                directionText="Next"
+                onClickHandler={next}
+              />
+            </Carousel>
+          </Col>
+          <Col xs={6}>
+            <input
+              className="roundButton"
+              type="button"
+              onClick={() => history.push("select")}
+              value="Create Recipe"
             />
-          
-             {slides}  
-            
-            <CarouselControl
-              direction="prev"
-              directionText="Previous"
-              onClickHandler={previous}
-            />
-            <CarouselControl
-              direction="next"
-              directionText="Next"
-              onClickHandler={next}
-            />
-          </Carousel>
-        </Col>
-        <Col xs={6}>
-          <input className="roundButton" type='button' onClick={() =>history.push('select')} value='Create Recipe'/>
-        </Col>
-      </Row>
-    </Container>
+          </Col>
+        </Row>
+      </Container>
+      <Container className="p-2">
+        {/* seven per page for pagenation / map for responsive phone dimensions,
+         three for height ~ 600px devices: remove 
+        when logic is in place*/}
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+        <RecipeDisplaySelect />
+      </Container>
+    </>
   );
 };
 
