@@ -5,6 +5,7 @@ const Titles = require('../Models/Titles')
 const Steps = require('../Models/Steps')
 const Ingredients = require('../Models/Ingredients')
 const { Op } = require("sequelize");
+const fs = require('fs')
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) =>{
@@ -17,30 +18,64 @@ const fileStorageEngine = multer.diskStorage({
 
 const upload = multer({storage: fileStorageEngine})
 
-recipeRouter.route('/')
-.get(async(req, res)=>{
-    try{
-        const titles = await Titles.findAll();
-        res.status(200)
-        res.send({ titles })
-    }catch(err){
-        res.send(err.message)
+recipeRouter
+  .route("/")
+  //get all titles
+  .get(async (req, res) => {
+    try {
+      const titles = await Titles.findAll();
+      res.status(200);
+      res.send({ titles });
+    } catch (err) {
+      res.send(err.message);
     }
-})
-//handle adding a new title and image
-.post(upload.single('titleImage'), async(req, res)=>{
-    const { title, description} = req.body
-    const image = req.file.filename
-    try{
-      const {dataValues:{id}} = await Titles.create({title, description, image})
-      res.status(200)
-      res.send(`Super suuhweet! inserted with id: ${id}`)
-    }catch(err){
-        res.send(err.message)
+  })
+  //handle adding a new title and image
+  .post(upload.single("titleImage"), async (req, res) => {
+    const { title, description } = req.body;
+    const image = req.file.filename;
+    try {
+      const {
+        dataValues: { id },
+      } = await Titles.create({ title, description, image });
+      res.status(200);
+      res.send(`Super suuhweet! inserted with id: ${id}`);
+    } catch (err) {
+      res.send(err.message);
     }
-})
+  })
+  //update titles
+  .put(upload.single("titleImage"), async (req, res) => {
+    const { title, description, id } = req.body;
+    let newTitle = {};
+
+    const { dataValues: prevTitle } = await Titles.findOne({ where: { id } });
+    if (title) newTitle.title = title;
+    if (description) newTitle.description = description;
+    if (req.file?.filename) {
+      fs.unlink(process.cwd() + "\\images" + "\\" + prevTitle.image, (err) => {
+        if (err) {
+          throw err;
+        }
+        console.log("image deleted successfully.");
+      });
+      newTitle.image = req.file.filename;
+    }
+
+    await Titles.update({ ...newTitle }, { where: { id } });
+
+    try {
+      res.status(200);
+      res.send(`Put Request hit`);
+    } catch (err) {
+      res.status(400);
+      res.send(err.message);
+    }
+  });
+
 
 recipeRouter.route('/steps/:titleId')
+//get all steps by title id
 .get(async(req, res)=>{
     const { titleId } = req.params
     try{
@@ -52,6 +87,7 @@ recipeRouter.route('/steps/:titleId')
         res.send(err.message)
     }
 })
+//add step
 .post(upload.single('stepImage'), async(req, res)=>{
     const { title, instruction, stepNumber, ingredients } = req.body
     const { titleId } = req.params
@@ -69,6 +105,7 @@ recipeRouter.route('/steps/:titleId')
     }
 })
 
+//search all titles by keyword
 recipeRouter.route('/search/titles/:keywords')
 .get(async(req, res)=>{
     const { keywords } = req.params
@@ -81,6 +118,7 @@ recipeRouter.route('/search/titles/:keywords')
     }
 })
 
+//search all descritons by keyword
 recipeRouter.route('/search/descriptions/:keywords')
 .get(async(req, res)=>{
     const { keywords } = req.params

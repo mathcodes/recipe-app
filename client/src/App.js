@@ -8,8 +8,7 @@ function App() {
   const [screenWidth, setScreenWidth] = useState(0)
   
  
-    const css = screenWidth > 768? './App.css' : './Mobile.css'
-    import `${css}`;
+  const css = screenWidth > 768? './App.css' : './Mobile.css'
   window.addEventListener("resize", function() {
     setScreenWidth(window.innerWidth);
   });
