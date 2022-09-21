@@ -66,7 +66,7 @@ recipeRouter
 
     try {
       res.status(200);
-      res.send(`Put Request hit`);
+      res.send(`Success`);
     } catch (err) {
       res.status(400);
       res.send(err.message);
@@ -96,14 +96,51 @@ recipeRouter.route('/steps/:titleId')
        await Steps.create({ titleId, title:title, instruction: instruction, stepNumber:stepNumber, image})
 
        for( ingredient of JSON.parse(ingredients)){
-        await Ingredients.create({...ingredient,stepId:stepNumber, titleId})
+        await Ingredients.create({ingredient, stepNumber, titleId}) 
       }
       res.status(200)
       res.send('SENT')
     }catch(err){
         res.send(err.message)
-    }
+    } 
 })
+.put(upload.single("titleImage"), async (req, res) => {
+    const { stepNumber ,title, instruction, ingredients } = req.body;
+    const { titleId } = req.params;
+    let updatedStep = {};
+
+    const { dataValues: prevStep } = await Steps.findOne({ where: { titleId, stepNumber } });
+
+    if (title) updatedStep.title = title;
+    if (instruction) updatedStep.instruction = instruction;
+    if(ingredients){
+        // delete previous ingredients
+        Ingredients.destroy({where:{stepNumber}})
+        //add ingredients
+        for( ingredient of JSON.parse(ingredients)){
+          await Ingredients.create({ingredient, stepNumber, titleId})
+        }
+    }
+    if (req.file?.filename) {
+      fs.unlink(process.cwd() + "\\images" + "\\" + prevStep.image, (err) => { 
+        if (err) {
+          throw err;
+        }
+        console.log("image deleted successfully.");
+      });
+      updatedStep.image = req.file.filename;
+    }
+
+    await Steps.update({ ...updatedStep }, { where: { titleId, stepNumber } });
+
+    try {
+      res.status(200);
+      res.send(`Success`);
+    } catch (err) {
+      res.status(400);
+      res.send(err.message);
+    }
+  });
 
 //search all titles by keyword
 recipeRouter.route('/search/titles/:keywords')

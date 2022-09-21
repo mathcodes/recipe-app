@@ -7,9 +7,9 @@ Ingredients.init(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true, 
     },
-    stepId:{
+    stepNumber:{
       type: DataTypes.INTEGER
     },
     titleId: {
@@ -18,9 +18,9 @@ Ingredients.init(
     ingredient: {
       type: DataTypes.STRING,
     },
-    appliesToStep:{
-      type: DataTypes.INTEGER,    
-    }
+    // appliesToStep:{
+    //   type: DataTypes.INTEGER,    
+    // }
   },
   {
     sequelize,
