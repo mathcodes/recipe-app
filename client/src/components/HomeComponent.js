@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Container } from "reactstrap";
 import { useHistory } from "react-router-dom";
+import RecipeDisplaySelect from "./RecipeDisplaySelect";
+import recipeServices from "../services/recipeServices";
 import {
   Carousel,
   CarouselItem,
@@ -8,7 +10,6 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from "reactstrap";
-import RecipeDisplaySelect from "./RecipeDisplaySelect";
 
 const items = [
   {
@@ -33,7 +34,7 @@ const items = [
 
 const HomeComponent = () => {
   const history = useHistory();
-
+  const [recipes, setRecipes] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -52,6 +53,22 @@ const HomeComponent = () => {
   const goToIndex = (newIndex) => {
     if (animating) return;
     setActiveIndex(newIndex);
+  };
+
+  useEffect(() => {
+    recipeServices
+      .getAllRecipes()
+      .then(getAllRecipeSuccess)
+      .catch(getAllRecipeError);
+  }, []);
+
+  const getAllRecipeSuccess = (response) => {
+    console.log(response.data.titles);
+    setRecipes(response.data.titles);
+  };
+
+  const getAllRecipeError = (err) => {
+    console.error(err);
   };
 
   const slides = items.map((item) => {
@@ -73,6 +90,10 @@ const HomeComponent = () => {
       </CarouselItem>
     );
   });
+
+  const mapRecipes = (recipe) => {
+    return <RecipeDisplaySelect recipe={recipe} />;
+  };
 
   return (
     <>
@@ -110,18 +131,7 @@ const HomeComponent = () => {
           </Col>
         </Row>
       </Container>
-      <Container className="p-2">
-        {/* seven per page for pagenation / map for responsive phone dimensions,
-         three for height ~ 600px devices: remove 
-        when logic is in place*/}
-        <RecipeDisplaySelect />
-        <RecipeDisplaySelect />
-        <RecipeDisplaySelect />
-        <RecipeDisplaySelect />
-        <RecipeDisplaySelect />
-        <RecipeDisplaySelect />
-        <RecipeDisplaySelect />
-      </Container>
+      <Container className="p-2">{recipes.map(mapRecipes)}</Container>
     </>
   );
 };
