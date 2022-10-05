@@ -1,17 +1,18 @@
 import React from "react";
-//mockup visually
-const RecipeDisplaySelect = () => {
+import { Card, CardTitle, CardBody } from "reactstrap";
+
+const RecipeDisplaySelect = (props) => {
   return (
-    <div className="border">
+    <Card width="18rem">
       <img
-        src="https://www.clipartmax.com/png/middle/95-952642_randome-clipart-svg-random-icon.png"
-        alt="Arrows from left to right"
-        height="80vh"
-        width="120vw"
+        src="https://farmhouseharvest.net/wp-content/uploads/2022/01/smoked-pork-shoulder-recipe-3.png" //{props?.recipe?.image}
+        alt={props?.recipe?.title}
         className="border"
       />
-      <text className="m-4">This is visible</text>
-    </div>
+      <CardBody>
+        <CardTitle className="m-4">{props?.recipe?.title}</CardTitle>
+      </CardBody>
+    </Card>
   );
 };
 
