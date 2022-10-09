@@ -5,6 +5,7 @@ import RecipeDisplaySelect from "./RecipeDisplaySelect";
 import recipeServices from "../services/recipeServices";
 import MainCarousel from "./Carousel";
 import Button from "./Button";
+import SearchBar from "./SearchBar";
 
 const HomeComponent = () => {
   const history = useHistory();
@@ -29,6 +30,23 @@ const HomeComponent = () => {
     return <RecipeDisplaySelect key={recipe.id} recipe={recipe} />;
   };
 
+  const handleClick = () => {
+    let query = document.getElementById("queryInput").value;
+
+    recipeServices
+      .getRecipeByTitle(query)
+      .then(getByTitleSuccess)
+      .catch(getByTitleError);
+  };
+
+  const getByTitleSuccess = (response) => {
+    setRecipes(response.data.titles);
+  };
+
+  const getByTitleError = (err) => {
+    console.error(err);
+  };
+
   return (
     <>
       <Container>
@@ -45,7 +63,10 @@ const HomeComponent = () => {
           </Col>
         </Row>
       </Container>
-      <Container className="p-2">{recipes.map(mapRecipes)}</Container>
+      <Container className="p-2">
+        <SearchBar func={handleClick} />
+        {recipes.map(mapRecipes)}
+      </Container>
     </>
   );
 };

@@ -22,4 +22,21 @@
   .roundButton:hover{
     opacity: .7;
   }
+
+  .searchButton  {
+    background-color:#182C4A;
+    border: 1px solid #000000;
+    border-top-right-radius: 25%;
+    border-bottom-right-radius: 25%;
+    color: #fff;
+    filter: drop-shadow(2px 2px 2px #808080);
+    margin-left: -25px;
+  }
+  
+  .searchBar{
+    border: 1px solid #000000;
+    border-top-left-radius: 15%;
+    border-bottom-left-radius: 15%;
+    margin-right: 10px;
+  }
   

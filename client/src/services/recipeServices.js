@@ -12,6 +12,16 @@ const getAllRecipes = () => {
   return axios(config);
 };
 
-const recipeServices = { getAllRecipes };
+const getRecipeByTitle = (title) => {
+  const config = {
+    method: "GET",
+    url: `${recipeEndpoint}/search/titles/${title}`,
+    headers: { "content-type": "application/json" },
+    crossdomain: true,
+  };
+  return axios(config);
+};
+
+const recipeServices = { getAllRecipes, getRecipeByTitle };
 
 export default recipeServices;
