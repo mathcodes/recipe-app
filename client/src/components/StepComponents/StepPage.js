@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Container } from 'reactstrap'
 import { useParams } from 'react-router-dom'
+import ControlsComponent from './ControlsComponent'
+
 const StepPage = () => {
 
   const [title, setTitle] = useState('')
@@ -20,13 +23,16 @@ const StepPage = () => {
   }
 
   return (
-    <div>
+    <Container>
+      {/* for testing controls component */}
+      <div>{curIndex}</div>
       <div>Title</div>
       <div>Text Area</div>
-      <div>Control Component</div>
+      
+      <ControlsComponent updateStepIndex={updateStepIndex}/> 
       <div>Buttons</div>
       <div>Modal</div>
-    </div>
+    </Container>
   )
 }
 
