@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container } from 'reactstrap'
 import { useParams } from 'react-router-dom'
 import ControlsComponent from './ControlsComponent'
+import ModalComponent from './ModalComponent'
 
 const StepPage = () => {
 
@@ -10,6 +11,9 @@ const StepPage = () => {
   const [curIndex, setCurIndex] = useState(0)
 
   const {titleId} = useParams() // used for fetching steps in api call 
+
+  let dummyImage="https://www.realsimple.com/thmb/XYXri0v7gA-REe_OZFNwPS98qxw=/900x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/different-pork-cuts-types-guide-1-2000-ffcac76d0b1c42ccb9a86d5e32f3aa38.jpg"
+  let dummyIng=['ing1', 'ing2', 'ing3']
 
   const updateStepIndex = (decrement = false)=>{
     if(!decrement && curIndex < steps.length -1){ //make sure we dont go past the last step
@@ -30,8 +34,7 @@ const StepPage = () => {
       <div>Text Area</div>
       
       <ControlsComponent updateStepIndex={updateStepIndex}/> 
-      <div>Buttons</div>
-      <div>Modal</div>
+      <ModalComponent image={dummyImage} ingredients={dummyIng}/>
     </Container>
   )
 }
