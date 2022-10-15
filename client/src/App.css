@@ -20,7 +20,7 @@
 .roundButton {
   background-color: #182C4A;
   color: #fff;
-  border:1px solid #182C4A;
+  border: 1px solid #182C4A;
   border-radius: 50%;
   height: 30vw;
   width: 30vw;
@@ -30,7 +30,7 @@
 .roundButtonSelected {
   background-color: #182C4A;
   color: #fff;
-  border:1px solid #182C4A;
+  border: 1px solid #182C4A;
   border-radius: 50%;
   height: 30vw;
   width: 30vw;
@@ -38,12 +38,12 @@
   opacity: .7;
 }
 
-.roundButton:hover{
+.roundButton:hover {
   opacity: .7;
 }
 
-.searchButton  {
-  background-color:#182C4A;
+.searchButton {
+  background-color: #182C4A;
   border: 1px solid #000000;
   border-top-right-radius: 25%;
   border-bottom-right-radius: 25%;
@@ -52,9 +52,20 @@
   margin-left: -25px;
 }
 
-.searchBar{
+.searchBar {
   border: 1px solid #000000;
   border-top-left-radius: 15%;
   border-bottom-left-radius: 15%;
   margin-right: 10px;
+}
+
+.btnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.activeBtn {
+  background-color: #5E6C81;
+  border: 1px solid #5E6C81;
 }
