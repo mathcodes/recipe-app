@@ -6,6 +6,7 @@ import recipeServices from "../services/recipeServices";
 import MainCarousel from "./Carousel";
 import Button from "./Button";
 import SearchBar from "./SearchBar";
+import BtnContainer from "./BtnContainer";
 
 const HomeComponent = () => {
   const history = useHistory();
@@ -67,6 +68,7 @@ const HomeComponent = () => {
         <SearchBar func={handleClick} />
         {recipes.map(mapRecipes)}
       </Container>
+      <BtnContainer />
     </>
   );
 };
