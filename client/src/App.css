@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.button {
+  background-color: #182C4A;
+  color: #fff;
+  border:1px solid #182C4A;
+  filter: drop-shadow(2px 2px 2px #808080);
+  width: 45%;
+  height: 8vh;
+}
+
+.buttonDivider{
+ border-right: 2px solid #fff;
+ background-color: #182C4A;
+ padding:60
+}
+
 .roundButton {
   background-color: #182C4A;
   color: #fff;
