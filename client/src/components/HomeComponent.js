@@ -76,7 +76,7 @@ const HomeComponent = () => {
       </Container>
       <Container className="p-2">
         <SearchBar func={handleClick} onChange={searchHandler} searchVal={searchVal}/>
-        {searched && !results[0]?<div>No results found</div>:results.length>1? results.map(mapRecipes): recipes.map(mapRecipes)}
+        {searched && !results[0]?<div>No results found</div>:results.length>=1? results.map(mapRecipes): recipes.map(mapRecipes)}
       </Container>
     </>
   );
@@ -84,8 +84,3 @@ const HomeComponent = () => {
 
 export default HomeComponent;
 
-const Recipes = (recipes)=>{
-  return(
-    recipes.map(recipe=><RecipeDisplaySelect key={recipe.id} recipe={recipe} />)
-  )
-}
