@@ -11,7 +11,9 @@ import BtnContainer from "./BtnContainer";
 const HomeComponent = () => {
   const history = useHistory();
   const [recipes, setRecipes] = useState([]);
-
+  const [searchVal, setSearchVal] = useState('')
+  const [results, setResults] = useState([])
+  const [searched, setSearched] = useState(false)
   useEffect(() => {
     recipeServices
       .getAllRecipes()
@@ -28,32 +30,38 @@ const HomeComponent = () => {
   };
 
   const mapRecipes = (recipe) => {
-    return <RecipeDisplaySelect key={recipe.id} recipe={recipe} />;
+      return <RecipeDisplaySelect key={recipe.id} recipe={recipe} />;
   };
 
   const handleClick = () => {
-    let query = document.getElementById("queryInput").value;
-
+    setSearched(true)
     recipeServices
-      .getRecipeByTitle(query)
+      .getRecipeByTitle(searchVal)
       .then(getByTitleSuccess)
       .catch(getByTitleError);
   };
 
   const getByTitleSuccess = (response) => {
-    setRecipes(response.data.titles);
+    setResults(response.data.titles);
   };
 
   const getByTitleError = (err) => {
     console.error(err);
   };
 
+  const searchHandler = (val) =>{
+    setSearchVal(val)
+  }
+
   return (
     <>
-      <Container>
-        <Row className="flex align-items-center text-center mt-2">
-          <MainCarousel />
-          <Col xs={6}>
+
+      <Container className="home-container">
+          <Row>
+          <Col xs={7}>
+            <MainCarousel recipes={recipes}/>
+          </Col>
+          <Col xs={5} className='home-button'>
             <Button
               className="roundButton"
               type="button"
@@ -63,14 +71,21 @@ const HomeComponent = () => {
             />
           </Col>
         </Row>
+
+        
       </Container>
       <Container className="p-2">
-        <SearchBar func={handleClick} />
-        {recipes.map(mapRecipes)}
+        <SearchBar func={handleClick} onChange={searchHandler} searchVal={searchVal}/>
+        {searched && !results[0]?<div>No results found</div>:results.length>1? results.map(mapRecipes): recipes.map(mapRecipes)}
       </Container>
-      <BtnContainer />
     </>
   );
 };
 
 export default HomeComponent;
+
+const Recipes = (recipes)=>{
+  return(
+    recipes.map(recipe=><RecipeDisplaySelect key={recipe.id} recipe={recipe} />)
+  )
+}

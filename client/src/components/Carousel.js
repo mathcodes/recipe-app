@@ -8,30 +8,34 @@ import {
   CarouselCaption,
 } from "reactstrap";
 
-const items = [
-  {
-    src: "https://picsum.photos/id/123/1200/400",
-    altText: "Slide 1",
-    caption: "Slide 1",
-    key: 1,
-  },
-  {
-    src: "https://picsum.photos/id/456/1200/400",
-    altText: "Slide 2",
-    caption: "Slide 2",
-    key: 2,
-  },
-  {
-    src: "https://picsum.photos/id/678/1200/400",
-    altText: "Slide 3",
-    caption: "Slide 3",
-    key: 3,
-  },
-];
+// const items = [
+//   {
+//     src: "https://picsum.photos/id/123/1200/400",
+//     altText: "Slide 1",
+//     caption: "Slide 1",
+//     key: 1,
+//   },
+//   {
+//     src: "https://picsum.photos/id/456/1200/400",
+//     altText: "Slide 2",
+//     caption: "Slide 2",
+//     key: 2,
+//   },
+//   {
+//     src: "https://picsum.photos/id/678/1200/400",
+//     altText: "Slide 3",
+//     caption: "Slide 3",
+//     key: 3,
+//   },
+// ];
 
-export default function MainCarousel() {
+export default function MainCarousel({recipes}) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
+
+  const items = recipes.map((recipe,index)=>{
+  return ({src:`http://localhost:5001/${recipe.image}`, altText:recipe.title, caption:recipe.title, key:index})
+  })
 
   const next = () => {
     if (animating) return;
@@ -58,7 +62,7 @@ export default function MainCarousel() {
         key={item.src}
       >
         <img
-          style={{ height: "20vh", width: "60vw" }}
+          className="carousel-image "
           src={item.src}
           alt={item.altText}
         />
@@ -71,27 +75,25 @@ export default function MainCarousel() {
   });
 
   return (
-    <Col xs={6}>
-      <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-        <CarouselIndicators
-          items={items}
-          activeIndex={activeIndex}
-          onClickHandler={goToIndex}
-        />
+    <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+      <CarouselIndicators
+        items={items}
+        activeIndex={activeIndex}
+        onClickHandler={goToIndex}
+      />
 
-        {slides}
+      {slides}
 
-        <CarouselControl
-          direction="prev"
-          directionText="Previous"
-          onClickHandler={previous}
-        />
-        <CarouselControl
-          direction="next"
-          directionText="Next"
-          onClickHandler={next}
-        />
-      </Carousel>
-    </Col>
+      <CarouselControl
+        direction="prev"
+        directionText="Previous"
+        onClickHandler={previous}
+      />
+      <CarouselControl
+        direction="next"
+        directionText="Next"
+        onClickHandler={next}
+      />
+    </Carousel>
   );
 }
