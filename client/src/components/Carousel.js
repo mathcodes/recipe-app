@@ -67,7 +67,6 @@ export default function MainCarousel({recipes}) {
           alt={item.altText}
         />
         <CarouselCaption
-          captionText={item.caption}
           captionHeader={item.caption}
         />
       </CarouselItem>
@@ -76,12 +75,6 @@ export default function MainCarousel({recipes}) {
 
   return (
     <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-      <CarouselIndicators
-        items={items}
-        activeIndex={activeIndex}
-        onClickHandler={goToIndex}
-      />
-
       {slides}
 
       <CarouselControl
