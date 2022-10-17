@@ -7,6 +7,7 @@ import MainCarousel from "./Carousel";
 import Button from "./Button";
 import SearchBar from "./SearchBar";
 import BtnContainer from "./BtnContainer";
+import RecipeCard from "./RecipeCard";
 
 const HomeComponent = () => {
   const history = useHistory();
@@ -30,7 +31,8 @@ const HomeComponent = () => {
   };
 
   const mapRecipes = (recipe) => {
-      return <RecipeDisplaySelect key={recipe.id} recipe={recipe} />;
+      // return <RecipeDisplaySelect key={recipe.id} recipe={recipe} />;
+      return <RecipeCard key={recipe.id} recipe={recipe} />;
   };
 
   const handleClick = () => {
@@ -55,7 +57,6 @@ const HomeComponent = () => {
 
   return (
     <>
-
       <Container className="home-container">
           <Row>
           <Col xs={7}>
@@ -71,12 +72,16 @@ const HomeComponent = () => {
             />
           </Col>
         </Row>
-
-        
       </Container>
       <Container className="p-2">
         <SearchBar func={handleClick} onChange={searchHandler} searchVal={searchVal}/>
-        {searched && !results[0]?<div>No results found</div>:results.length>=1? results.map(mapRecipes): recipes.map(mapRecipes)}
+        {searched && !results[0]?
+          <div className="text-center" style={{fontSize:'2rem'}}>No results found</div>
+          :
+          results.length >=1?
+            results.map(mapRecipes)
+            : 
+            recipes.map(mapRecipes)}
       </Container>
     </>
   );

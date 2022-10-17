@@ -102,3 +102,19 @@
   text-align: center;
 }
 
+.card-container {
+  border: 1px solid #182C4A;
+  box-shadow: 5px;
+  /* height: 30vh; */
+}
+
+.card-img {
+  object-fit: contain;
+  height: 30vw;
+  /* width: 45vw; */ 
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
