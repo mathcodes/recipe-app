@@ -36,7 +36,6 @@ const HomeComponent = () => {
   };
 
   const handleNav = (id)=>{
-    alert('nav', id)
     history.push(`select/${id}`)
   } 
 
@@ -69,7 +68,6 @@ const HomeComponent = () => {
           </Col>
           <Col xs={5} className='home-button'>
             <Button
-              className="roundButton"
               type="button"
               onClick={() => history.push("select")}
               value="Create Recipe"
