@@ -102,19 +102,23 @@
   text-align: center;
 }
 
-.card-container {
-  border: 1px solid #182C4A;
-  box-shadow: 5px;
-  /* height: 30vh; */
-}
-
 .card-img {
-  object-fit: contain;
-  height: 30vw;
-  /* width: 45vw; */ 
+  height: 100%;
+  border-left: 1px solid #182C4A;
+  border-top: 1px solid #182C4A;
+  border-bottom: 1px solid #182C4A;
 }
 
+.card-description {
+  padding: 0;
+  align-content: center;
+  border-left: 1px solid #182C4A;
+  border-right: 1px solid #182C4A;
+  border-top: 1px solid #182C4A;
+  border-bottom: 1px solid #182C4A;
+}
 .card-title {
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-left: 1rem;
 }

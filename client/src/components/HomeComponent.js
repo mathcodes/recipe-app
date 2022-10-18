@@ -32,8 +32,13 @@ const HomeComponent = () => {
 
   const mapRecipes = (recipe) => {
       // return <RecipeDisplaySelect key={recipe.id} recipe={recipe} />;
-      return <RecipeCard key={recipe.id} recipe={recipe} />;
+      return <RecipeCard key={recipe.id} recipe={recipe} nav={handleNav} />;
   };
+
+  const handleNav = (id)=>{
+    alert('nav', id)
+    history.push(`select/${id}`)
+  } 
 
   const handleClick = () => {
     setSearched(true)
