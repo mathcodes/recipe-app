@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-}
 
 .button {
   background-color: #182C4A;
@@ -104,6 +101,7 @@
 
 .card-img {
   height: 100%;
+  object-fit: cover;
   border-left: 1px solid #182C4A;
   border-top: 1px solid #182C4A;
   border-bottom: 1px solid #182C4A;
@@ -118,7 +116,9 @@
   border-bottom: 1px solid #182C4A;
 }
 .card-title {
+  padding-top: .5rem;
+  padding-bottom: 1rem;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 475;
   margin-left: 1rem;
 }
