@@ -60,3 +60,22 @@ Endpoints:
   | titleImage | file |
   | title | text |
   | description | text |
+
+
+Components structure
+ Main Components:
+  Main component
+    Handle all the routes
+    State? 
+
+  Home page:
+   Carousel => seperate component
+   Search Bar => seperate component
+   Results => seperate components mapped out
+
+  Select Page 
+
+  Button as seperate component
+    Take in title
+    Take in size
+    Take in a callback onClick function 

@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-}
 
 .button {
   background-color: #182C4A;
@@ -42,21 +39,36 @@
   opacity: .7;
 }
 
-.searchButton {
+.search-button {
+  position: relative;
+  font-size: 1.5rem;
   background-color: #182C4A;
-  border: 1px solid #000000;
-  border-top-right-radius: 25%;
-  border-bottom-right-radius: 25%;
+  border: 1px solid #182C4A;
   color: #fff;
+  padding-left: 20px;
+  margin-left: -15px;
+  width:20%;
+  height: 100%;
+  z-index: -1;
+}
+
+.search-container{
+  text-align: center;
+  width: 100%;
+  height: 10vh;
+  margin-top: 30px;
+  margin-bottom: 30px;
   filter: drop-shadow(2px 2px 2px #808080);
-  margin-left: -25px;
 }
 
 .searchBar {
-  border: 1px solid #000000;
-  border-top-left-radius: 15%;
-  border-bottom-left-radius: 15%;
+  border: 1px solid #182C4A;
+  width:75%;
+  height: 100%;
+  font-size: 1.5rem;
+  border-radius: .5rem;
   margin-right: 10px;
+  z-index: 10;
 }
 
 .btnContainer {
@@ -68,4 +80,49 @@
 .activeBtn {
   background-color: #5E6C81;
   border: 1px solid #5E6C81;
+}
+
+/* 2:3 ratio made need refactored or changed */
+.carousel-image {
+  height: 35vw;
+  width: 50vw;
+}
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  margin-top:50px
+}
+
+.home-button {
+  align-self: center;
+  text-align: center;
+}
+
+.card-container {
+  cursor: pointer;
+}
+
+.card-img {
+  height: 100%;
+  object-fit: cover;
+  border-left: 1px solid #182C4A;
+  border-top: 1px solid #182C4A;
+  border-bottom: 1px solid #182C4A;
+}
+
+.card-description {
+  padding: 0;
+  align-content: center;
+  border-left: 1px solid #182C4A;
+  border-right: 1px solid #182C4A;
+  border-top: 1px solid #182C4A;
+  border-bottom: 1px solid #182C4A;
+}
+.card-title {
+  padding-top: .5rem;
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 475;
+  margin-left: 1rem;
 }

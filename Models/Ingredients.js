@@ -18,9 +18,6 @@ Ingredients.init(
     ingredient: {
       type: DataTypes.STRING,
     },
-    // appliesToStep:{
-    //   type: DataTypes.INTEGER,    
-    // }
   },
   {
     sequelize,

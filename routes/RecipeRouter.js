@@ -9,10 +9,10 @@ const fs = require('fs')
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) =>{
-        cb(null, './images')
+        cb(null, './images') // call back determines destination
     },
     filename: (req, file, cb)=>{
-        cb(null, Date.now() + '--'+ file.originalname)
+        cb(null, Date.now() + '--'+ file.originalname)//cb gets filename
     }
 }) 
 
