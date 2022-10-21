@@ -15,6 +15,7 @@ const HomeComponent = () => {
   const [searchVal, setSearchVal] = useState('')
   const [results, setResults] = useState([])
   const [searched, setSearched] = useState(false)
+  
   useEffect(() => {
     recipeServices
       .getAllRecipes()
