@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Button from '../Button';
+import Button from '../Button'
 import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
 
-function ModalComponent({ image, ingredients }) {
+function ModalComponent({ image, ingredients, allIngredients }) {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [modal3, setModal3] = useState(false);
@@ -11,10 +11,13 @@ function ModalComponent({ image, ingredients }) {
   const toggle2 = () => setModal2(!modal2);
   const toggle3 = () => setModal3(!modal3);
 
-  let IngrArray = ingredients.map((ingredient, index) => (
+  let IngrArray = ingredients.map((ingredient, index) => {
+    return <li>{index} : {ingredient}</li>
+  });
 
-    <li>{index} : {ingredient}</li>
-  ))
+  let AllIngrArray = allIngredients.map((ingredient, index) => {
+    return <li>{index} : {ingredient}</li>
+  });
 
   return (
     <>
@@ -29,7 +32,7 @@ function ModalComponent({ image, ingredients }) {
               title="Image"
             />
           </Col>
-          <Col>
+          <Col className="modalButtonRow">
             <Button
               className="roundButton"
               type="button"
@@ -38,7 +41,7 @@ function ModalComponent({ image, ingredients }) {
               title="Ingredients"
             />
           </Col>
-          <Col>
+          <Col className="modalButtonRow">
             <Button
               className="roundButton"
               type="button"
@@ -48,85 +51,86 @@ function ModalComponent({ image, ingredients }) {
             />
           </Col>
         </Row>
-
-        {/* FIRST MODAL */}
-        <Modal isOpen={modal} toggle={toggle1}>
-          <ModalHeader toggle={toggle1}>Modal 1</ModalHeader>
-          <ModalBody>
-            <ul>
-              <img src={image} alt="dummyImage" width="80%" textAlign="center" />
-            </ul>
-
-
-
-          </ModalBody>
-          <ModalFooter>
-            <Button 
-              onClick={toggle1}
-              className="modalButton"
-              value="modal1"
-              title="Title1 TBD"
-            >
-              Modal 1
-            </Button>{' '}
-            <Button
-              onClick={toggle1}
-              className="modalButton"
-              value="modal1"
-              title="Cancel"
-            />
-          </ModalFooter>
-        </Modal>
-
-        {/* Second Modal - IMAGE*/}
-        <Modal isOpen={modal2} toggle={toggle2}>
-          <ModalHeader toggle={toggle2}>Modal 2</ModalHeader>
-          <ModalBody>
-            {IngrArray}
-          </ModalBody>
-          <ModalFooter>
-          <Button
-              onClick={toggle2}
-              className="modalButton"
-              value="modal2"
-              title="Title2 TBD"
-            />
-            {' '}
-            <Button
-              onClick={toggle2}
-              className="modalButton"
-              value="modal2"
-              title="Cancel"
-            />
-          </ModalFooter>
-        </Modal>
-
-        {/* Third Modal - Nothing Yet */}
-        <Modal isOpen={modal3} toggle={toggle3}>
-        <ModalHeader toggle={toggle2}>Modal 3</ModalHeader>
-          <ModalBody>
-            {IngrArray}
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              onClick={toggle3}
-              className="modalButton"
-              value="modal2"
-              title="Title3 TBD"
-            />
-            {' '}
-            <Button
-              onClick={toggle3}
-              className="modalButton"
-              value="modal3"
-              title="Cancel"
-            />
-          </ModalFooter>
-        </Modal>
-
       </div>
+
+      {/* Modal 1 */}
+      <Modal isOpen={modal} toggle={toggle1}>
+        <ModalHeader>Modal 1 Header</ModalHeader>
+        <ModalBody>
+          <img src={image} alt="dummyImage" width="80%" textAlign="center" />
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            className="modalButton"
+            type="button"
+            onClick={toggle1}
+            value="modalBtn1a"
+            title="TBDModal1"
+          />         
+          {' '}
+          <Button
+            className="modalButton"
+            type="button"
+            onClick={toggle1}
+            value="modalBtn1b"
+            title="Close"
+          />
+        </ModalFooter>
+      </Modal>
+
+      {/* Modal 2 */}
+      <Modal isOpen={modal2} toggle={toggle2}>
+        <ModalHeader>Modal 2 Header</ModalHeader>
+        <ModalBody>
+          {IngrArray}
+        </ModalBody>
+        <ModalFooter>
+        <Button
+            className="modalButton"
+            type="button"
+            onClick={toggle2}
+            value="modalBtn2a"
+            title="TBDModal2"
+          />         
+          {' '}
+          <Button
+            className="modalButton"
+            type="button"
+            onClick={toggle2}
+            value="modalBtn2b"
+            title="Close"
+          />
+        </ModalFooter>
+      </Modal>
+
+      {/* Modal 3 */}
+      <Modal isOpen={modal3} toggle={toggle3}>
+        <ModalHeader>Modal 3 Header</ModalHeader>
+        <ModalBody>
+          {AllIngrArray}
+        </ModalBody>
+        <ModalFooter>
+        <Button
+            className="modalButton"
+            type="button"
+            onClick={toggle3}
+            value="modalBtn3a"
+            title="TBDModal3"
+          />         
+          {' '}
+          <Button
+            className="modalButton"
+            type="button"
+            onClick={toggle3}
+            value="modalBtn3b"
+            title="Close"
+          />
+        </ModalFooter>
+      </Modal>
+
     </>
-  );
+  )
+
 }
 
 export default ModalComponent;

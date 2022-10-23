@@ -12,8 +12,10 @@ const StepPage = () => {
 
   const {titleId} = useParams() // used for fetching steps in api call 
 
-  let dummyImage="https://www.realsimple.com/thmb/XYXri0v7gA-REe_OZFNwPS98qxw=/900x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/different-pork-cuts-types-guide-1-2000-ffcac76d0b1c42ccb9a86d5e32f3aa38.jpg"
-  let dummyIng=['ing1', 'ing2', 'ing3']
+  // Placeholders for API calls
+  let dummyImage = "https://www.realsimple.com/thmb/XYXri0v7gA-REe_OZFNwPS98qxw=/900x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/different-pork-cuts-types-guide-1-2000-ffcac76d0b1c42ccb9a86d5e32f3aa38.jpg"
+  let dummyIng = ['ing1', 'ing2', 'ing3', 'ing4',]
+  let dummyAllIng = ['Aing1', 'Aing2', 'Aing3', 'Aing4','Aing5', 'Aing6', 'Aing7', 'Aing8',]
 
   const updateStepIndex = (decrement = false)=>{
     if(!decrement && curIndex < steps.length -1){ //make sure we dont go past the last step
@@ -34,7 +36,7 @@ const StepPage = () => {
       <div>Text Area</div>
       
       <ControlsComponent updateStepIndex={updateStepIndex}/> 
-      <ModalComponent image={dummyImage} ingredients={dummyIng}/>
+      <ModalComponent image={dummyImage} ingredients={dummyIng} allIngredients={dummyAllIng} />
     </Container>
   )
 }
