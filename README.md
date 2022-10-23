@@ -62,7 +62,21 @@ Endpoints:
   | description | text |
 
 
-•	Hire, trian, and oversee a team of 11 Technical Assistants to use our software to track and monitor progress of our services using data analytics and up-to-date SEO tactics 
-•	Monitored, restored, and enhanced software updates using marketing software to serve clients at scale 
-•	Expedited and refined marketing strategies using customized software to increase clientele by an average of 178.8% 
-•	Managed team of 30+ successful Brand Account Managers, Media Negotiators and Promotions Specialists 
+
+Components structure
+ Main Components:
+  Main component
+    Handle all the routes
+    State? 
+
+  Home page:
+   Carousel => seperate component
+   Search Bar => seperate component
+   Results => seperate components mapped out
+
+  Select Page 
+
+  Button as seperate component
+    Take in title
+    Take in size
+    Take in a callback onClick function 

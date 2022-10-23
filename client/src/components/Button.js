@@ -5,7 +5,7 @@ function Button(props) {
     <button
       value={props.value}
       type={props.type}
-      className={props.className}
+      className='roundButton'
       onClick={props.onClick}
     >
       {props.title}
