@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
+import Button from '../Button';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
 
-function ModalComponent( {image, ingredients} ) {
+function ModalComponent({ image, ingredients }) {
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [modal3, setModal3] = useState(false);
@@ -11,8 +12,8 @@ function ModalComponent( {image, ingredients} ) {
   const toggle3 = () => setModal3(!modal3);
 
   let IngrArray = ingredients.map((ingredient, index) => (
-     
-        <li>{index} : {ingredient}</li>
+
+    <li>{index} : {ingredient}</li>
   ))
 
   return (
@@ -21,28 +22,30 @@ function ModalComponent( {image, ingredients} ) {
         <Row className="text-center" xs="3">
           <Col className="modalButtonRow">
             <Button
-              className="roundButtonSm"
+              className="roundButton"
+              type="button"
               onClick={toggle1}
-            >
-              Modal1
-            </Button>
+              value="image"
+              title="Image"
+            />
           </Col>
           <Col>
             <Button
-              className="roundButtonSm"
+              className="roundButton"
+              type="button"
               onClick={toggle2}
-            >
-
-              Modal2
-            </Button>
+              value="ingredients"
+              title="Ingredients"
+            />
           </Col>
           <Col>
             <Button
-              className="roundButtonSm"
+              className="roundButton"
+              type="button"
               onClick={toggle3}
-            >
-              Modal3
-            </Button>
+              value="allIngredients"
+              title="All Ingredients"
+            />
           </Col>
         </Row>
 
@@ -51,59 +54,76 @@ function ModalComponent( {image, ingredients} ) {
           <ModalHeader toggle={toggle1}>Modal 1</ModalHeader>
           <ModalBody>
             <ul>
-            {IngrArray}
+              <img src={image} alt="dummyImage" width="80%" textAlign="center" />
             </ul>
-         
-       
+
+
 
           </ModalBody>
           <ModalFooter>
-            <Button onClick={toggle1}>
+            <Button 
+              onClick={toggle1}
+              className="modalButton"
+              value="modal1"
+              title="Title1 TBD"
+            >
               Modal 1
             </Button>{' '}
-            <Button onClick={toggle1}>
-              Cancel
-            </Button>
+            <Button
+              onClick={toggle1}
+              className="modalButton"
+              value="modal1"
+              title="Cancel"
+            />
           </ModalFooter>
         </Modal>
-          
-          {/* Second Modal - IMAGE*/}
+
+        {/* Second Modal - IMAGE*/}
         <Modal isOpen={modal2} toggle={toggle2}>
           <ModalHeader toggle={toggle2}>Modal 2</ModalHeader>
           <ModalBody>
-            <img src={image} alt="dummyImage" width="80%" textAlign="center"/>
+            {IngrArray}
           </ModalBody>
           <ModalFooter>
-            <Button onClick={toggle2}>
-              Modal 2
-            </Button>{' '}
-            <Button onClick={toggle2}>
-              Cancel
-            </Button>
+          <Button
+              onClick={toggle2}
+              className="modalButton"
+              value="modal2"
+              title="Title2 TBD"
+            />
+            {' '}
+            <Button
+              onClick={toggle2}
+              className="modalButton"
+              value="modal2"
+              title="Cancel"
+            />
           </ModalFooter>
         </Modal>
-        
+
+        {/* Third Modal - Nothing Yet */}
         <Modal isOpen={modal3} toggle={toggle3}>
-          {/* <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalHeader toggle={toggle2}>Modal 3</ModalHeader>
           <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </ModalBody> */}
+            {IngrArray}
+          </ModalBody>
           <ModalFooter>
-            <Button onClick={toggle3}>
-              Modal 3
-            </Button>{' '}
-            <Button onClick={toggle3}>
-              Cancel
-            </Button>
+            <Button
+              onClick={toggle3}
+              className="modalButton"
+              value="modal2"
+              title="Title3 TBD"
+            />
+            {' '}
+            <Button
+              onClick={toggle3}
+              className="modalButton"
+              value="modal3"
+              title="Cancel"
+            />
           </ModalFooter>
         </Modal>
-        
+
       </div>
     </>
   );

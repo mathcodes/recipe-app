@@ -22,8 +22,18 @@
   color: #fff;
   border: 1px solid #182C4A;
   border-radius: 50%;
-  height: 30vw;
-  width: 30vw;
+  height: 10rem;
+  width: 10rem;
+  filter: drop-shadow(2px 2px 2px #808080);
+}
+
+.modalButton {
+  background-color: #182C4A;
+  color: #fff;
+  border: 1px solid #182C4A;
+  border-radius: 10%;
+  height: 3rem;
+  width: 6rem;
   filter: drop-shadow(2px 2px 2px #808080);
 }
 
