@@ -1,10 +1,14 @@
-export default function SearchBar(props) {
+export default function SearchBar({func ,searchVal, onChange}) {
   return (
-    <div className="m-4" width="16rem">
-      <input id="queryInput" className="searchBar" placeholder="Search..." />
-      <button className="searchButton" onClick={props.func} type="submit">
+    <div className="search-container">
+      <input id="queryInput" className="searchBar" value={searchVal} onChange={(e)=>onChange(e.target.value)} placeholder="Search..." />
+      {/* <button className="search-button" onClick={func}> */}
+      <span onClick={func}>
+        <button className="search-button">
         Go
       </button>
+      </span>
+      
     </div>
   );
 }
