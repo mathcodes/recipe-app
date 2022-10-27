@@ -8,11 +8,10 @@
   height: 8vh;
 }
 
-.buttonDivider{
- border-right: 2px solid #fff;
- background-color: #182C4A;
- padding:60
+.position-absolute{
+  padding: 1rem;
 }
+
 
 .roundButton {
   background-color: #182C4A;
