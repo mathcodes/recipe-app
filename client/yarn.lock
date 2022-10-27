@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"18@0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/18/-/18-0.0.0.tgz#a3d0f4a3716c60c77f4158d8b53262049c6c2082"
+  integrity sha512-2SPMA/ciHy16yY4uVXDrW8q7nLwb2F2Vrt8Qz5OiVo9cyC8Wo8/rwC2hDzbqlTXhIwzt2Y4yJRLem6XMNbT/3A==
+
 "@adobe/css-tools@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.0.1.tgz#b38b444ad3aa5fedbb15f2f746dcd934226a12dd"
